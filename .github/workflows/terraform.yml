@@ -51,6 +51,7 @@ jobs:
       env:
         ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
       run: |
+          terraform init -reconfigure
           terraform plan -no-color
 
     # - name: 'Terraform Plan'
