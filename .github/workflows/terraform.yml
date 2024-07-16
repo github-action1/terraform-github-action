@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
      run:
-       working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
+       working-directory: ./terraform
     env:
       ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
       ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
@@ -46,10 +46,10 @@ jobs:
       run: terraform validate
 
     - name: Terraform plan 
-      working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
+      #working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
       run: terraform plan -no-color
 
     - name: Terraform apply
-      working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
+      #working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
       run: terraform apply -auto-approve
   
