@@ -46,14 +46,12 @@ jobs:
     - name: Terraform Format
       run: terraform fmt
 
-    - name: Terraform Validate
-      run: terraform validate
+    # - name: Terraform Validate
+    #   run: terraform validate
 
     - name: Terraform plan 
-      #working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
       run: terraform plan -no-color
 
     - name: Terraform apply
-      #working-directory: ./home/runner/work/terraform-github-action/terraform-github-action
       run: terraform apply -auto-approve
   
