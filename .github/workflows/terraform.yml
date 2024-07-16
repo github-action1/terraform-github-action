@@ -46,9 +46,10 @@ jobs:
       run: terraform validate
 
     - name: Terraform plan 
+      working-directory: ../terraform/
       run: terraform plan -no-color
 
     - name: Terraform apply
-      id: apply
+      working-directory: ../terraform/
       run: terraform apply -auto-approve
   
