@@ -50,8 +50,17 @@ jobs:
     #   run: terraform validate
 
     - name: Terraform plan 
-      run: terraform plan -no-color
+      run: terraform plan |
+        export ARM_CLIENT_ID=$ARM_CLIENT_ID
+        export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+        export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+        export ARM_TENANT_ID=$ARM_TENANT_ID
 
     - name: Terraform apply
-      run: terraform apply -auto-approve
+      run: terraform init |
+        export ARM_CLIENT_ID=$ARM_CLIENT_ID
+        export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+        export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+        export ARM_TENANT_ID=$ARM_TENANT_ID
+      #run: terraform apply -auto-approve
   
