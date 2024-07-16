@@ -35,14 +35,14 @@ jobs:
       with:
         terraform_wrapper: false
 
-    - name: Azure Authentication
-      id: login
-      uses: azure/login@v1
-      env:
-        ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
-        ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
-        ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+    # - name: Azure Authentication
+    #   id: login
+    #   uses: azure/login@v1
+    #   env:
+    #     ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
+    #     ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+    #     ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+    #     ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
 
  # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
