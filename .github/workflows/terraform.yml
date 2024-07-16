@@ -57,9 +57,6 @@ jobs:
 
     - name: 'Terraform Plan'
       run: terraform plan
-      with:
-        tf_actions_subcommand: 'plan'
-        tf_actions_working_dir: "./terraform"
       env:
         ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
         ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
