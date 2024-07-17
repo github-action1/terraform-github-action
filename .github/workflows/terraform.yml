@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./terraform/modules/new
+        working-directory: ./terraform/
     env:
       ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
       ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
@@ -40,7 +40,7 @@ jobs:
 
  # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        uses: ./terraform
+        uses: ./terraform/
         with:
           ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
           ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
