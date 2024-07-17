@@ -45,13 +45,20 @@ jobs:
           export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
           export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
           export ARM_TENANT_ID=$ARM_TENANT_ID
-        
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -no-color
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve  
+      - name: Terraform Plan
+        run: terraform plan |
+            export ARM_CLIENT_ID=$ARM_CLIENT_ID
+            export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+            export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+            export ARM_TENANT_ID=$ARM_TENANT_ID
+        
+      # - name: Terraform Plan
+      #   id: plan
+      #   run: terraform plan -no-color
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve  
 
 #     steps:
 # # Checkout the repository to the GitHub Actions runner
