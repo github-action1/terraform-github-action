@@ -28,10 +28,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+ # Install the latest version of the Terraform CLI
+      - name: 'Setup Terraform'
+        uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 3.112.0
           terraform_wrapper: false
 
       - name: Terraform Format
