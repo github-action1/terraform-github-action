@@ -25,39 +25,84 @@ jobs:
       ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
 
     steps:
-# Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v2
 
- # Install the latest version of the Terraform CLI
-    - name: 'Setup Terraform'
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_wrapper: false
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.5.6
+          terraform_wrapper: false
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve  
+
+#     steps:
+# # Checkout the repository to the GitHub Actions runner
+#     - name: Checkout
+#       uses: actions/checkout@v4
+
+#  # Install the latest version of the Terraform CLI
+#     - name: 'Setup Terraform'
+#       uses: hashicorp/setup-terraform@v3
+#       with:
+#         terraform_wrapper: false
     
-    # Log into Azure with OIDC integration
-    # - name: 'Az CLI login'
-    #   uses: azure/login@v1
-    #   with:
-    #     client-secret: "${{ secrets.AZURE_CLIENT_SECRET }}"
-    #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
-    #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-    #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#     # Log into Azure with OIDC integration
+#     # - name: 'Az CLI login'
+#     #   uses: azure/login@v1
+#     #   with:
+#     #     client-secret: "${{ secrets.AZURE_CLIENT_SECRET }}"
+#     #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
+#     #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+#     #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
- # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      run: terraform init |
-        export ARM_CLIENT_ID=$ARM_CLIENT_ID
-        export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
-        export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
-        export ARM_TENANT_ID=$ARM_TENANT_ID
+#  # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+#     - name: Terraform Init
+#       run: terraform init |
+#         export ARM_CLIENT_ID=$ARM_CLIENT_ID
+#         export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+#         export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+#         export ARM_TENANT_ID=$ARM_TENANT_ID
         
-    - name: Terraform Format
-      run: terraform fmt   
+#     - name: Terraform Format
+#       run: terraform fmt   
 
-    - name: Terraform plan 
-      run: terraform plan 
+#     - name: Terraform plan 
+#       run: terraform plan 
 
-    - name: Terraform apply
-      run: terraform apply -auto-approve
+#     - name: Terraform apply
+#       run: terraform apply -auto-approve
   
+
+
+#       name: "Terraform"
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   terraform:
+#     name: "Terraform"
+#     runs-on: ubuntu-latest
+#     env:
+#       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#     defaults:
+#       run:
+#         working-directory: src
+    
