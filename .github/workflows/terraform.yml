@@ -18,14 +18,14 @@ jobs:
     defaults:
       run:
         working-directory: ./terraform
-    env:
-      ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
-      ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-      ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
-      ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+    # env:
+    #   ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
+    #   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+    #   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+    #   ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
 
     steps:
-      - name: 'Az CLI login'
+      - name: Connect to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
