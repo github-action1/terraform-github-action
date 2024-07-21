@@ -40,18 +40,23 @@ jobs:
 
  # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform init |
-          export ARM_CLIENT_ID=$ARM_CLIENT_ID
-          export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
-          export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
-          export ARM_TENANT_ID=$ARM_TENANT_ID
+        run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan |
-            export ARM_CLIENT_ID=$ARM_CLIENT_ID
-            export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
-            export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
-            export ARM_TENANT_ID=$ARM_TENANT_ID
+        run: terraform plan
+#  - name: Terraform Init
+#         run: terraform init |
+#           export ARM_CLIENT_ID=$ARM_CLIENT_ID
+#           export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+#           export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+#           export ARM_TENANT_ID=$ARM_TENANT_ID
+
+#       - name: Terraform Plan
+#         run: terraform plan |
+#             export ARM_CLIENT_ID=$ARM_CLIENT_ID
+#             export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+#             export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+#             export ARM_TENANT_ID=$ARM_TENANT_ID
         
       # - name: Terraform Plan
       #   id: plan
